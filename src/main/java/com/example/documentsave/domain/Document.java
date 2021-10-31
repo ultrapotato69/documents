@@ -8,7 +8,7 @@ import java.util.Set;
 @Entity
 public class Document {
     @Id
-    @GeneratedValue(generator = "document_sequence")
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "document_sequence")
     private Long id;
     private String name;
     @Column(columnDefinition="text")
@@ -16,6 +16,8 @@ public class Document {
     private LocalDateTime saveTime;
 
     @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(joinColumns =
+        @JoinColumn(foreignKey = @ForeignKey(name = "document_codes_fk")))
     @Column(name = "code")
     private Set<Long> codes;
 

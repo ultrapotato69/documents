@@ -34,7 +34,6 @@ class DocumentSaveApplicationTests {
             "комментируя слова {-78914} российского {-80001} премьер-министра  {0.22356} Дмитрия Медведева" +
             " об отношениях {ok} между Москвой и Васшингтоном. {4}";
 
-
     @Test
     void saveTest()
     {
@@ -51,7 +50,7 @@ class DocumentSaveApplicationTests {
 
 
     @Test
-    void name() {
+    void saveDto() {
         DocumentDtoInitial dtoInitial1 = new DocumentDtoInitial("testName1", testString);
         DocumentDtoInitial dtoInitial2 = new DocumentDtoInitial("testName2", testString2);
         documentService.save(dtoInitial1);
