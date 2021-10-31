@@ -1,0 +1,12 @@
+### Сохранение нового документа.
+
+POST http://localhost:8080/documents
+Content-Type: application/json
+
+{
+  "name": "Test Rest 1",
+  "text": "Some text {19} add more text {+100500}  {-127} {helloWorld}"
+}
+
+### Просмотр всего списка
+GET http://localhost:8080/documents
