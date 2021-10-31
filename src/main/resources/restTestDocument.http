@@ -1,5 +1,4 @@
-### Сохранение нового документа.
-
+### Сохранение нового документа
 POST http://localhost:8080/documents
 Content-Type: application/json
 
@@ -8,11 +7,20 @@ Content-Type: application/json
   "text": "Rest text {19} add more text {+100500}  {-127} {helloWorld}"
 }
 
+### Просмотр документа по id
+GET http://localhost:8080/documents/1
 
-
-
-
-
-
-### Просмотр всего списка
+### Просмотр всего списка страниц
 GET http://localhost:8080/documents
+
+### Просмотр второй страницы
+GET http://localhost:8080/documents?page=2
+
+### Просмотр списка документов, имеющих коды равные code
+GET http://localhost:8080/documents?filter=equals&code=4
+
+### Просмотр списка документов, имеющих коды меньше code
+GET http://localhost:8080/documents?filter=less&code=-80000
+
+### Просмотр списка документов, имеющих коды больше code
+GET http://localhost:8080/documents?filter=greater&code=100000
