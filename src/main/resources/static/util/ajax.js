@@ -17,10 +17,3 @@ export async function postJson(object, url) {
     });
     return response
 }
-
-export async function deleteFromJson(url) {
-    let response = await fetch(url, {
-        method: 'DELETE',
-    })
-    return response
-}
