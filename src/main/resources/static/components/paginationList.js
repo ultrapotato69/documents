@@ -11,11 +11,17 @@ export async function initialListElement() {
     await addListElements();
 }
 
+let filterCache = null;
+let codeCache = null;
+
 async function addListElements(pageNumber, filter, code) {
     clearElement(mainList)
     let url = "/documents"
     if (pageNumber !== undefined && pageNumber !== null) {
         url = url + "?page=" + pageNumber
+        if (filterCache !== null & codeCache !== null) {
+            url = url + "&filter=" + filterCache + "&code=" + codeCache
+        }
     }
     if (filter !== undefined && code !== undefined && filter !== null && code !== null) {
         if (pageNumber !== undefined && pageNumber !== null) {
@@ -25,7 +31,6 @@ async function addListElements(pageNumber, filter, code) {
         }
         url = url + "filter=" + filter + "&code=" + code
     }
-    console.log(url)
     const page = await getJsonFromAddress(url)
     const pagination = navBar(page)
     const list = await createList(page)
@@ -64,36 +69,43 @@ function navBar(page) {
     codeInput.size = 10
     const lessButton = document.createElement('button')
     lessButton.innerText = "Меньше"
-    lessButton.onclick = () =>  addListElements(null,"less", codeInput.value)
+    lessButton.onclick = () =>  {
+        filterCache = "less"
+        codeCache = codeInput.value
+        addListElements(null,"less", codeInput.value)
+    }
     const equalsButton = document.createElement('button')
     equalsButton.innerText = "Равно"
-    equalsButton.onclick = () => addListElements(null,"equals", codeInput.value)
+    equalsButton.onclick = () => {
+        filterCache = "equals"
+        codeCache = codeInput.value
+        addListElements(null,"equals", codeInput.value)
+    }
     const greaterButton = document.createElement('button')
     greaterButton.innerText = "Больше"
-    greaterButton.onclick = () => addListElements(null,"greater", codeInput.value)
+    greaterButton.onclick = () => {
+        filterCache = "greater"
+        codeCache = codeInput.value
+        addListElements(null,"greater", codeInput.value)
+    }
     filter.append(label)
     filter.append(codeInput)
     filter.append(lessButton)
     filter.append(equalsButton)
     filter.append(greaterButton)
-
     nav.append(paginationBar)
     nav.append(filter)
-
     return nav
 }
 
 export async function createList(page) {
-    console.log(page)
     const list = document.createElement('div')
     for (let i = 0; i < page.content.length; i++) {
         const row = document.createElement('div')
-
         const num = getDocumentNumber(page.content[i].id);
         const name = getDocumentName(page.content[i].name);
         const saveTime = getDocumentSaveTime(page.content[i].saveTime)
         const codesEl = getDocumentCodes(page.content[i].codes)
-
         const linkButton = document.createElement('button')
         linkButton.innerText = "Просмотреть"
         linkButton.onclick = async() => getDocument(page.content[i].id)
@@ -113,10 +125,8 @@ async function getDocument(id) {
         return createAccountPage(result)
 }
 
-
 async function createAccountPage(documentObj) {
     clearElement(right)
-    console.log(documentObj)
     const documentEl = document.createElement('div')
     const num = getDocumentNumber(documentObj.id);
     const name = getDocumentName(documentObj.name);
