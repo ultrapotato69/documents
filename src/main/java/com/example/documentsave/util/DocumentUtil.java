@@ -14,7 +14,13 @@ public class DocumentUtil {
         Pattern pattern = Pattern.compile("(\\{)([+-]?\\d*)(\\})");
         Matcher matcher = pattern.matcher(text);
         while (matcher.find()) {
-            codes.add(Long.parseLong(matcher.group(2)));
+            try {
+                codes.add(Long.parseLong(matcher.group(2)));
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+                continue;
+            }
+
         }
         return codes;
     }

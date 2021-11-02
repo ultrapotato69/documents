@@ -1,0 +1,24 @@
+.textcols {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+.textcols-item {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    height: 48%;
+    background: #e3e6ee;
+}
+.textcols-item + .textcols-item {
+    margin-left: 4%;
+}
+
+#menu-horiz li {
+    display: inline-block;
+    padding: 3px 5px 3px 0;
+}
+
+

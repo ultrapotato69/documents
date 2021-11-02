@@ -1,6 +1,8 @@
 package com.example.documentsave.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -13,6 +15,7 @@ public class Document {
     private String name;
     @Column(columnDefinition="text")
     private String text;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime saveTime;
 
     @ElementCollection(fetch = FetchType.EAGER)

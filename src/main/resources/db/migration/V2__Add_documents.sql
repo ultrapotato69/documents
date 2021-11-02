@@ -20,7 +20,7 @@ insert into document_codes(document_id, code) values (2, 123);
 insert into document (name, save_time, text)
     values ('срочно к оплате', current_timestamp,
             'Some text {19} add more text {+100500}  {-127} {helloWorld}');
-insert into document_codes(document_id, code) values (3, -78914);
+insert into document_codes(document_id, code) values (3, 19);
 insert into document_codes(document_id, code) values (3, 100500);
 insert into document_codes(document_id, code) values (3, -127);
 
