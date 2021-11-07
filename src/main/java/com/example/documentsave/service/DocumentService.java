@@ -20,7 +20,7 @@ public class DocumentService {
     @Value("${document.page.size}")
     private int pageSize;
 
-    @Autowired
+
     public DocumentService(DocumentRepo documentRepo) {
         this.documentRepo = documentRepo;
     }

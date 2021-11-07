@@ -15,7 +15,7 @@ import java.util.Optional;
 public class DocumentController {
     private final DocumentService documentService;
 
-    @Autowired
+
     public DocumentController(DocumentService documentService) {
         this.documentService = documentService;
     }
