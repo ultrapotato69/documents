@@ -59,7 +59,7 @@ class DocumentSaveApplicationTests {
 
     @Test
     void findAllProjected() {
-        Page<DocumentView> allProjected = documentRepo.findAllProjectedBy(PageRequest.of(0, 2));
+        Page<DocumentView> allProjected = documentRepo.findAllProjectedBy(PageRequest.of(0, 3));
         allProjected.forEach(x -> {
             System.out.println("Document name: " + x.getName() + "\nCodes: ");
             x.getCodes().forEach(System.out::println);

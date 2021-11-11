@@ -2,6 +2,8 @@ package com.example.documentsave.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,6 +19,7 @@ public class Document {
     private String text;
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime saveTime;
+
 
     @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(joinColumns =
